@@ -29,8 +29,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # IMPORTANT: This matches your vite.config.ts build.outDir
-          path: './dist/public' 
+          # Vite files location
+          path: './client/dist/public' 
 
       - name: Deploy
         uses: actions/deploy-pages@v4
