@@ -6,6 +6,8 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { metaImagesPlugin } from "./vite-plugin-meta-images";
 
 export default defineConfig({
+  // The 'base' must match your repository name for GitHub Pages to find assets
+  base: '/Portfolio/', 
   plugins: [
     react(),
     runtimeErrorOverlay(),
@@ -35,8 +37,10 @@ export default defineConfig({
       plugins: [],
     },
   },
+  // Keeps the source code in 'client'
   root: path.resolve(import.meta.dirname, "client"),
   build: {
+    // This puts the final website files in 'dist/public' relative to the project root
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
   },
