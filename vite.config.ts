@@ -7,7 +7,7 @@ import { metaImagesPlugin } from "./vite-plugin-meta-images";
 
 export default defineConfig({
   // The 'base' must match your repository name for GitHub Pages to find assets
-  base: '/Portfolio/', 
+  base: './',
   plugins: [
     react(),
     runtimeErrorOverlay(),
