@@ -1,49 +1,41 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: Node.js CI
+name: Deploy Portfolio
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
 jobs:
-  build:
-
+  build_and_deploy:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Use the version your project needs
+          node-version: 20
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build site
-        run: npm run build # This creates your 'dist' or 'build' folder
+      - name: Build
+        run: npm run build
 
-      - name: Upload Pages Artifact
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # IMPORTANT: Verify if your build output is in 'dist' or 'build'
-          path: './dist' 
+          # If using Vite, use './dist'. If Create React App, use './build'
+          path: './dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
