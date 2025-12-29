@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Vite files location
-          path: './client/dist/public' 
+          path: './dist/public' 
 
       - name: Deploy
         uses: actions/deploy-pages@v4
